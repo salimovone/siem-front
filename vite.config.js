@@ -8,6 +8,9 @@ dns.setDefaultResultOrder('verbatim')
 export default defineConfig({
   plugins: [react()],
   server: {
-    allowedHosts: ["4f81-185-139-138-27.ngrok-free.app"]
+    allowedHosts: ["special-presently-bison.ngrok-free.app"]
   }
 })
+
+
+// ngrok http --url=special-presently-bison.ngrok-free.app 5173
