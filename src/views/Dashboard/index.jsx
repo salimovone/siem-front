@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
-import { Mitre } from "../../components";
+import {  EventsCountEvolutionChart, FIMRecentEventsCard, Mitre, SCALastestScansCard } from "../../components";
+import Compilance from "../../components/Compilance";
 
 const Dashboard = () => {
     return (
@@ -10,16 +11,16 @@ const Dashboard = () => {
                     <Mitre />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6, lg: 3 }}>
-                    xs=12 lg=4
+                    <Compilance />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6, lg: 6 }}>
-                    xs=12 lg=4
+                    <FIMRecentEventsCard />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6, lg: 6 }}>
-                    xs=12 lg=8
+                    <EventsCountEvolutionChart />
                 </Grid>
                 <Grid size={{ xs: 12, md: 12, lg: 6 }}>
-                    xs=12 lg=8
+                    <SCALastestScansCard />
                 </Grid>
             </Grid>
         </Box>
