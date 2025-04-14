@@ -5,18 +5,18 @@ import Compilance from "../../components/Compilance";
 
 const Dashboard = () => {
     return (
-        <Box>
+        <Box >
             <Grid container spacing={2}>
-                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                <Grid size={{ xs: 12, sm: 6, md: 6, lg: 3 }}>
                     <Mitre />
                 </Grid>
-                <Grid size={{ xs: 12, md: 6, lg: 3 }}>
+                <Grid size={{ xs: 12, sm: 6, md: 6, lg: 3 }}>
                     <Compilance />
                 </Grid>
-                <Grid size={{ xs: 12, md: 6, lg: 6 }}>
+                <Grid size={{ xs: 12, md: 12, lg: 6 }}>
                     <FIMRecentEventsCard />
                 </Grid>
-                <Grid size={{ xs: 12, md: 6, lg: 6 }}>
+                <Grid size={{ xs: 12, md: 12, lg: 6 }}>
                     <EventsCountEvolutionChart />
                 </Grid>
                 <Grid size={{ xs: 12, md: 12, lg: 6 }}>
