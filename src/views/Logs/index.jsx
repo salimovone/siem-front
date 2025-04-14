@@ -1,7 +1,12 @@
 import React from 'react';
+import { RuleTable } from '../../components';
 
 const Logs = () => {
-    return <div>Welcome to the Logs Page</div>;
+    return (
+        <>
+            <RuleTable />
+        </>
+    );
 };
 
 export default Logs;
