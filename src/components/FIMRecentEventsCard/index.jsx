@@ -35,7 +35,7 @@ const data = [
 
 export default function FIMRecentEventsCard() {
   return (
-    <Card sx={{ maxWidth: 900, margin: 'auto' }}>
+    <Card sx={{ maxWidth: 900, margin: 'auto', height: "100%"}}>
       <CardContent>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography variant="h6" gutterBottom>
@@ -45,7 +45,7 @@ export default function FIMRecentEventsCard() {
             <OpenInNewIcon fontSize="small" />
           </IconButton>
         </div>
-        <TableContainer component={Paper} elevation={0}>
+        <TableContainer component={Paper} elevation={0} sx={{display: {md: "block !important", xs: "none !important"}, }} >
           <Table size="small">
             <TableHead>
               <TableRow>

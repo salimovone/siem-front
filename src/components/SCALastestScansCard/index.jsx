@@ -25,7 +25,7 @@ export default function SCALatestScansCard() {
   };
 
   return (
-    <Card sx={{ width: '100%' }}>
+    <Card sx={{ width: '100%', height: "100%" }}>
       <CardContent>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Typography variant="h6">SCA: Lastest scans</Typography>
@@ -41,7 +41,7 @@ export default function SCALatestScansCard() {
           <Chip label={data.tag} size="small" color="success" />
         </div>
 
-        <Table size="small">
+        <Table size="small" sx={{display: {md: "block !important", xs: "none !important"}, }}>
           <TableHead>
             <TableRow>
               <TableCell>Policy</TableCell>

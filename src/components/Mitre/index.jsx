@@ -4,7 +4,7 @@ import CardTitle from '../CardTitle'
 
 const Mitre = () => {
   return (
-    <Card>
+    <Card sx={{height: "100%"}}>
         <CardTitle title="MITRE ATT&CK" />
         <List>
             <ListItem sx={{display: "flex", width:"100%", justifyContent: "space-between", fontSize: "14px", py: "4px"}} >

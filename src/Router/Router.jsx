@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import ResponsiveDrawer from "./Layout/ResponsiveDrawer";
 import { routes } from "./routes";
 import { Login } from "../views";
+import MiniDrawer from "./Layout/MiniDrawer";
 
 const Router = () => {
     return (
         <Routes>
-            <Route path="/" element={<ResponsiveDrawer />}>
+            <Route path="/" element={<MiniDrawer />}>
                 {routes.map(item => (
                     <Route
                         key={item.id}
