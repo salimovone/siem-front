@@ -64,7 +64,7 @@ export default function MiniDrawer() {
                 </Toolbar>
             </AppBar>
             <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
-            <Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: "#f2f2f2", height: "100vh", overflowBlock: "auto" }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: "#f9f9f9", height: "100vh", overflowBlock: "auto" }}>
                 <DrawerHeader />
                 <Outlet />
             </Box>

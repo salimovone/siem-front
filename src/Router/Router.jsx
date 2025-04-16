@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import { routes } from "./routes";
-import { Login } from "../views";
+import { Login, SignUp } from "../views";
 import MiniDrawer from "./Layout/MiniDrawer";
 
 const Router = () => {
@@ -19,6 +19,7 @@ const Router = () => {
             </Route>
             {/* Login page, keyinchalik alohida outlet bn */}
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
         </Routes>
     );
 };
