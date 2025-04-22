@@ -81,7 +81,7 @@ const Sidebar = ({ open, handleDrawerClose }) => {
             <Divider />
             <List>
                 {routes.map(
-                    item => (
+                    item => item.icon && (
                         <ListItem
                             key={item.id}
                             disablePadding

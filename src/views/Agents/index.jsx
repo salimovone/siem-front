@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import {
 	Card,
 	CardContent,
@@ -9,53 +9,20 @@ import {
 	Box,
 	Chip,
 	Divider,
+	Button,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ComputerIcon from "@mui/icons-material/Computer";
 import AppleIcon from "@mui/icons-material/Apple";
-import AndroidIcon from "@mui/icons-material/Android";
-import LanIcon from "@mui/icons-material/Lan";
-
-const agents = [
-	{
-		name: "Agent-001",
-		os: "linux",
-		isActive: true,
-		macAddress: "00:1A:2B:3C:4D:5E",
-		moreInfo: {
-			ip: "192.168.1.10",
-			hostname: "debian-node",
-			lastSeen: "2025-04-14 12:32:10",
-			version: "4.1.2",
-		},
-	},
-	{
-		name: "Agent-002",
-		os: "windows",
-		isActive: false,
-		macAddress: "00:2B:3C:4D:5E:6F",
-		moreInfo: {
-			ip: "192.168.1.11",
-			hostname: "win-agent",
-			lastSeen: "2025-04-10 18:03:22",
-			version: "3.8.7",
-		},
-	},
-];
+import { devicesList } from "../../service/devicesListService";
+import { useNavigate } from "react-router";
 
 const getOSIcon = os => {
-	switch (os) {
-		case "linux":
-		case "windows":
-			return <ComputerIcon />;
-		case "mac":
-			return <AppleIcon />;
-		case "android":
-			return <AndroidIcon />;
-		default:
-			return <ComputerIcon />;
-	}
+	if (os.toLowerCase().includes("linux")) return <ComputerIcon />;
+	else if (os.toLowerCase().includes("windows")) return <ComputerIcon />;
+	else if (os.toLowerCase().includes("mac")) return <AppleIcon />;
+	else return <ComputerIcon />;
 };
 
 const StatusChip = ({ active }) => (
@@ -63,26 +30,48 @@ const StatusChip = ({ active }) => (
 		label={active ? "Active" : "Inactive"}
 		size="small"
 		sx={{
-			backgroundColor: active ? "green" : "gray",
+			backgroundColor: active ? "lime" : "lightgray",
 			color: "white",
 		}}
 	/>
 );
 
 export default function Agents() {
+	const navigate = useNavigate();
 	const [openIndex, setOpenIndex] = useState(null);
+	const [data, setData] = useState([]);
 
 	const toggleOpen = index => {
 		setOpenIndex(openIndex === index ? null : index);
 	};
 
+	const fetchData = () => {
+		devicesList()
+			.then(res => {
+				console.log(res);
+				setData(res);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
+
+	useState(() => {
+		fetchData();
+	}, []);
+
 	return (
 		<Grid container spacing={2} direction="column">
-			{agents.map((agent, index) => (
+			{data.map((agent, index) => (
 				<Grid key={agent.name}>
 					<Card sx={{ width: "100%" }}>
 						<CardContent>
-							<Grid container alignItems="center" spacing={2}>
+							<Grid
+								container
+								alignItems="center"
+								spacing={2}
+								sx={{ width: "100%" }}
+							>
 								<Grid>
 									<IconButton onClick={() => toggleOpen(index)}>
 										{openIndex === index ? (
@@ -93,21 +82,20 @@ export default function Agents() {
 									</IconButton>
 								</Grid>
 
+								<Grid>{getOSIcon(agent.os_name)}</Grid>
+
 								<Grid>
 									<Typography variant="h6">{agent.name}</Typography>
 								</Grid>
 
-								<Grid>{getOSIcon(agent.os)}</Grid>
-
 								<Grid>
-									<StatusChip active={agent.isActive} />
+									<StatusChip active={agent.is_active} />
 								</Grid>
 
 								<Grid>
-									<LanIcon sx={{ verticalAlign: "middle", mr: 0.5 }} />
-									<Typography variant="body2" component="span">
-										{agent.macAddress}
-									</Typography>
+									<Button variant="outlined" size="small" onClick={() => navigate("/apps", { state: { agent } })}>
+										<Typography variant="body2">App List</Typography>
+									</Button>
 								</Grid>
 							</Grid>
 
@@ -115,16 +103,13 @@ export default function Agents() {
 								<Divider sx={{ my: 2 }} />
 								<Box pl={6}>
 									<Typography variant="body2">
-										<strong>IP Address:</strong> {agent.moreInfo.ip}
+										<strong>IP Address:</strong> {agent.ip_address}
 									</Typography>
 									<Typography variant="body2">
-										<strong>Hostname:</strong> {agent.moreInfo.hostname}
+										<strong>Hostname:</strong> {agent.os_name}
 									</Typography>
 									<Typography variant="body2">
-										<strong>Last Seen:</strong> {agent.moreInfo.lastSeen}
-									</Typography>
-									<Typography variant="body2">
-										<strong>Agent Version:</strong> {agent.moreInfo.version}
+										<strong>Last Seen:</strong> {agent.last_active}
 									</Typography>
 								</Box>
 							</Collapse>

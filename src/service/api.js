@@ -57,7 +57,7 @@ api.interceptors.response.use(
             try {
                 const refreshToken = localStorage.getItem("refresh")
                 const res = await axios.post(
-                    `${import.meta.env.VITE_API_BASE_URL}/token/refresh/`,
+                    `${import.meta.env.VITE_API_BASE_URL}/auth/token/refresh/`,
                     { refresh: refreshToken },
                     // { withCredentials: true } // cookie yuboriladi // httpOnly cookie bo‘lsa, bu kerak
                 )
