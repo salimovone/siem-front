@@ -19,6 +19,7 @@ import { devicesList } from "../../service/devicesListService";
 import { useNavigate } from "react-router";
 
 const getOSIcon = os => {
+	if (!os) return <ComputerIcon />;
 	if (os.toLowerCase().includes("linux")) return <ComputerIcon />;
 	else if (os.toLowerCase().includes("windows")) return <ComputerIcon />;
 	else if (os.toLowerCase().includes("mac")) return <AppleIcon />;
@@ -82,19 +83,25 @@ export default function Agents() {
 									</IconButton>
 								</Grid>
 
-								<Grid>{getOSIcon(agent.os_name)}</Grid>
+								<Grid>{getOSIcon(agent?.os_name)}</Grid>
 
 								<Grid>
-									<Typography variant="h6">{agent.name}</Typography>
+									<Typography variant="h6">{agent?.name}</Typography>
 								</Grid>
 
 								<Grid>
-									<StatusChip active={agent.is_active} />
+									<StatusChip active={agent?.is_active} />
 								</Grid>
 
 								<Grid>
-									<Button variant="outlined" size="small" onClick={() => navigate("/apps", { state: { agent } })}>
+									<Button variant="outlined" size="small" onClick={() => navigate("/apps", { state: { id: agent.id } })}>
 										<Typography variant="body2">App List</Typography>
+									</Button>
+								</Grid>
+
+								<Grid>
+									<Button variant="outlined" size="small" onClick={() => navigate("/device-logs", { state: { id: agent.id } })}>
+										<Typography variant="body2">Device Logs</Typography>
 									</Button>
 								</Grid>
 							</Grid>
@@ -103,13 +110,13 @@ export default function Agents() {
 								<Divider sx={{ my: 2 }} />
 								<Box pl={6}>
 									<Typography variant="body2">
-										<strong>IP Address:</strong> {agent.ip_address}
+										<strong>IP Address:</strong> {agent?.ip_address}
 									</Typography>
 									<Typography variant="body2">
-										<strong>Hostname:</strong> {agent.os_name}
+										<strong>Hostname:</strong> {agent?.os_name}
 									</Typography>
 									<Typography variant="body2">
-										<strong>Last Seen:</strong> {agent.last_active}
+										<strong>Last Seen:</strong> {agent?.last_active}
 									</Typography>
 								</Box>
 							</Collapse>

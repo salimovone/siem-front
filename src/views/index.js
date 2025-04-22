@@ -6,3 +6,5 @@ export { default as Agents } from "./Agents"
 export { default as SignUp } from './SignUp';
 export { default as Devices } from './Devices';
 export { default as Apps } from './Apps';
+export { default as DeviceLogs } from './DeviceLogs';
+export { default as Rules } from './Rules';

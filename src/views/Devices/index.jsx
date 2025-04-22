@@ -1,36 +1,34 @@
-import React from 'react'
-import { devicesList } from '../../service/devicesListService'
-import { useState } from 'react'
+import { useState } from "react";
+import useWebSocket from "../../libs/useWebSocket";
 
 const Devices = () => {
-    const [data, setData] = useState([])
-    const fetchData = () => {
-        devicesList().then((res) => {
-            console.log(res)
-            setData(res)
-        }
-        ).catch((err) => {
-            console.log(err)
-        })
-    }
-  return (
-    <div>
-        <ul>
-            {
-                data.map((item, index) => {
-                    return (
-                        <li key={index}>
-                            <p>{item.name}</p>
-                            <p>{item.ip}</p>
-                            <p>{item.status}</p>
-                        </li>
-                    )
-                })
-            }
-        </ul>
-        <button onClick={fetchData}>fetch</button>
-    </div>
-  )
-}
+	const { messages, sendMessage, isConnected } = useWebSocket(
+		"wss://echo.websocket.org"
+	);
+	const [value, setValue] = useState("");
 
-export default Devices
+    const handleSendMessage = () => {
+        sendMessage(value);
+        setValue("");
+    }
+	return (
+		<div>
+			<span>Is Active: {isConnected ? "Yes" : "No"}</span>
+			<div className="">
+				<input
+					type="text"
+					onChange={e => setValue(e.target.value)}
+					value={value}
+				/>
+                <button onClick={handleSendMessage}>send</button>
+			</div>
+			<ul>
+				{messages.map((message, index) => (
+					<li key={index}>{message}</li>
+				))}
+			</ul>
+		</div>
+	);
+};
+
+export default Devices;

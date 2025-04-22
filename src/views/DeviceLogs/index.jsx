@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { defaultGetService } from "../../service/defaultGetService";
 
-const Apps = () => {
+const DeviceLogs = () => {
 	const { state } = useLocation();
-	const [appList, setAppList] = useState([]);
+	const [logList, setLogList] = useState([]);
 	const fetchData = () => {
-		defaultGetService(`/agent/devices/${state.id}/applications/`)
+		defaultGetService(`/agent/devices/${state.id}/logs/`)
 			.then(res => {
-				setAppList(res);
+				setLogList(res);
 				console.log("App List: ", res);
 			})
 			.catch(err => {
@@ -23,16 +23,18 @@ const Apps = () => {
 	return (
 		<div>
 			<ul>
-				{appList.map((log, index) => (
+				{logList.map((log, index) => (
 					<li key={index}>
 						{Object.entries(log).map(([key, value]) => {
-							if (value === null) return null;
+							if (value === null || value === "") return null;
 							return (
 								<div key={key}>
-									<strong>{key}:</strong> {value}
+									<strong>{key}:</strong> {String(value)}
 								</div>
 							);
 						})}
+						<br />
+						<br />
 						<br />
 					</li>
 				))}
@@ -41,4 +43,4 @@ const Apps = () => {
 	);
 };
 
-export default Apps;
+export default DeviceLogs;
