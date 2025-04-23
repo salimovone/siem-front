@@ -6,7 +6,7 @@ const DeviceLogs = () => {
 	const { state } = useLocation();
 	const [logList, setLogList] = useState([]);
 	const fetchData = () => {
-		defaultGetService(`/agent/devices/${state.id}/logs/`)
+		defaultGetService(`/agent/device/${state.id}/logs/`)
 			.then(res => {
 				setLogList(res);
 				console.log("App List: ", res);

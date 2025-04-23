@@ -1,4 +1,4 @@
-import { Agents, Apps, Dashboard, DeviceLogs, Devices, Logs, Rules } from "../views";
+import { Agents, AppLogs, Apps, Dashboard, DeviceLogs, Devices, Logs, Rules } from "../views";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import DevicesIcon from '@mui/icons-material/Devices';
@@ -46,6 +46,12 @@ export const routes = [
         id: 5,
         path: "/device-logs",
         element: DeviceLogs,
+    },
+    {
+        name: "App Logs",
+        id: 5,
+        path: "/app-logs",
+        element: AppLogs,
     },
     {
         name: "Rules",
