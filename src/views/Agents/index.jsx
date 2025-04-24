@@ -94,13 +94,13 @@ export default function Agents() {
 								</Grid>
 
 								<Grid>
-									<Button variant="outlined" size="small" onClick={() => navigate("/apps", { state: { id: agent.id } })}>
+									<Button variant="outlined" size="small" onClick={() => navigate("/apps", { state: { id: agent.pk } })}>
 										<Typography variant="body2">App List</Typography>
 									</Button>
 								</Grid>
 
 								<Grid>
-									<Button variant="outlined" size="small" onClick={() => navigate("/device-logs", { state: { id: agent.id } })}>
+									<Button variant="outlined" size="small" onClick={() => navigate("/device-logs", { state: { id: agent.pk } })}>
 										<Typography variant="body2">Device Logs</Typography>
 									</Button>
 								</Grid>
